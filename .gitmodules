@@ -1,0 +1,3 @@
+[submodule "Mimic/vendor/spdlog"]
+	path = Mimic/vendor/spdlog
+	url = https://github.com/gabime/spdlog
