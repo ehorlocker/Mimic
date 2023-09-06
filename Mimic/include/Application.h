@@ -3,7 +3,7 @@
 #include "Core.h"
 
 namespace Mimic {
-	class Application
+	class MIMIC_API Application
 	{
 	public:
 		Application();

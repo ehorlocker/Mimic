@@ -4,7 +4,7 @@
 #include <memory>
 
 namespace Mimic {
-	class Log
+	class MIMIC_API Log
 	{
 	public:
 		static void Init();

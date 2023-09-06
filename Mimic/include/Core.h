@@ -1,6 +1,6 @@
 #pragma once
 
-/*#ifdef MZ_PLATFORM_WINDOWS
+#ifdef MZ_PLATFORM_WINDOWS
 	#ifdef MZ_BUILD_DLL
 		#define MIMIC_API __declspec(dllexport)
 	#else
@@ -8,4 +8,4 @@
 	#endif
 #else
 	#error Mimic only supports Windows
-#endif*/
+#endif

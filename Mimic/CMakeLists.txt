@@ -4,10 +4,14 @@ project(Mimic VERSION 0.01 DESCRIPTION "Mimic Game Engine")
 
 set(CMAKE_CXX_STANDARD 20)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+add_compile_definitions(MZ_PLATFORM_WINDOWS MZ_BUILD_DLL)
+
+#include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/out/build/Sandbox)
 
 file(GLOB SOURCES src/**.cpp)
-add_library(${PROJECT_NAME} "${SOURCES}")
+add_library(${PROJECT_NAME} SHARED "${SOURCES}")
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog)
 
@@ -26,3 +30,10 @@ target_link_libraries(${PROJECT_NAME}
 	PRIVATE
 		
 )
+
+ADD_CUSTOM_COMMAND(TARGET Mimic POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy
+                       ${CMAKE_BINARY_DIR}/Mimic/Mimic.dll
+                       ${CMAKE_BINARY_DIR}/Sandbox
+                   COMMENT "Copying 'test' library to '${COPY_TO_PATH}'")
+
