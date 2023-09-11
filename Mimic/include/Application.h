@@ -15,4 +15,3 @@ namespace Mimic {
 	// To be defined in CLIENT
 	Application* CreateApplication();
 }
-

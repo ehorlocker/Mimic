@@ -35,5 +35,5 @@ ADD_CUSTOM_COMMAND(TARGET Mimic POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy
                        ${CMAKE_BINARY_DIR}/Mimic/Mimic.dll
                        ${CMAKE_BINARY_DIR}/Sandbox
-                   COMMENT "Copying 'test' library to '${COPY_TO_PATH}'")
+                   COMMENT "Copying 'Mimic' library to '${CMAKE_BINARY_DIR}/Sandbox'")
 
