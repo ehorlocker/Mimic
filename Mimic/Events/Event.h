@@ -38,7 +38,8 @@ namespace Mimic {
 	// Same deal with overriding GetCategoryFlags
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-	// Base class for all events
+	// Base class for all events, example implementations can be
+	// found in ApplicationEvent.h
 	class Event {
 	public:
 		virtual ~Event() = default;
@@ -46,7 +47,7 @@ namespace Mimic {
 		bool Handled = false;
 
 		virtual EventType GetEventType() const = 0;
-		virtual const char* GetName const = 0;
+		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
 		virtual std::string ToString() const { return GetName(); }
 
@@ -57,16 +58,24 @@ namespace Mimic {
 
 	class EventDispatcher {
 	public:
-		EventDispatcher(Event& event) : m_event(event) {}
+		EventDispatcher(Event& event) : m_Event(event) {}
 
-		// F is decided by compiler b/c func
-		// this function confuses me a little because I don't
-		// understand func's role yet. like.. how does it know
-		// what function to dispatch? some use of it will answer this.
+		/* dispatch confuses me a little because I don't
+		 * understand func's role yet. like.. how does it know
+		 * functions will meet proper arguments? or will it 
+		 * call only an overridden function?
+		 *
+		 * `const F& func` is different than in the video he
+		 * makes this file. in the vid he uses
+		 * `using EventFn = boolean function` and dispatch arguments
+		 * are handled differently, will the new implementation 
+		 * cause problems? I don't think so, but it's worth noting.
+		 * 
+		 * note: F typename is decided by compiler b/c func argument
+		 */
 		template<typename T, typename F>
 		bool Dispatch(const F& func) {
 			if (m_Event.GetEventType() == T::GetStaticType()) {
-
 				m_Event.Handled |= func(static_cast<T&>(m_Event));
 				return true;
 			}

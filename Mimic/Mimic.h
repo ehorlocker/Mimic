@@ -6,6 +6,9 @@
 
 #include "Log.h"
 
+#include "Events/Event.h"
+#include "Events/ApplicationEvent.h"
+
 // ======= ENTRY POINT =======
 #include "EntryPoint.h"
 // ===========================
