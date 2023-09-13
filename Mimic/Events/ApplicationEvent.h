@@ -24,4 +24,18 @@ namespace Mimic {
 	private:
 		unsigned int m_Width, m_Height;
 	};
+
+	class WindowCloseEvent : public Event {
+	public:
+		// "The default constructor for class T is trivial 
+		// (i.e. performs no action)"
+		WindowCloseEvent() = default;
+
+		EVENT_CLASS_TYPE(WindowClose);
+		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+	};
+
+	/*
+	 * AppTickEvent, AppUpdateEvent, and AppRenderEvent will go here
+	 */
 }
