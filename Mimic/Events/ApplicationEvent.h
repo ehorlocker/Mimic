@@ -3,8 +3,6 @@
 #include "Event.h"
 #include "Core.h"
 
-#include <string>
-
 namespace Mimic {
 	class WindowResizeEvent : public Event {
 	public:
@@ -21,6 +19,7 @@ namespace Mimic {
 		}
 
 		EVENT_CLASS_TYPE(WindowResize);
+		EVENT_CLASS_CATEGORY(EventCategoryApplication);
 	private:
 		unsigned int m_Width, m_Height;
 	};

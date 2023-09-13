@@ -1,8 +1,19 @@
-﻿// Mimic.h : Include file for standard system include files,
-// or project specific include files.
-
-#pragma once
+﻿#pragma once
 
 #include <iostream>
+#include <memory>
+#include <utility>
+#include <algorithm>
+#include <functional>
 
-// TODO: Reference additional headers your program requires here.
+#include <string>
+#include <sstream>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+
+#ifdef MZ_PLATFORM_WINDOWS
+	#include <Windows.h>
+#endif
+
+

@@ -5,7 +5,6 @@
 #include "Event.h"
 #include "Core.h"
 
-#include <string>
 
 namespace Mimic {
 
