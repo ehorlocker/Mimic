@@ -6,11 +6,9 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_compile_definitions(MZ_PLATFORM_WINDOWS MZ_BUILD_DLL)
 
-#include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/out/build/Sandbox)
 
-file(GLOB SOURCES src/**.cpp)
+file(GLOB SOURCES **.cpp)
 add_library(${PROJECT_NAME} SHARED "${SOURCES}")
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog)
@@ -18,7 +16,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog)
 target_include_directories(${PROJECT_NAME}
 	PUBLIC
 		$<INSTALL_INTERFACE:include>
-		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 		spdlog
 	PRIVATE
 		

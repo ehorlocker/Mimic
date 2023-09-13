@@ -1,8 +1,11 @@
-﻿// Mimic.h : Include file for standard system include files,
-// or project specific include files.
-
 #pragma once
 
-#include <iostream>
+// For use by Mimic applications
 
-// TODO: Reference additional headers your program requires here.
+#include "Application.h"
+
+#include "Log.h"
+
+// ======= ENTRY POINT =======
+#include "EntryPoint.h"
+// ===========================
