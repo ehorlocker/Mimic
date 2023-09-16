@@ -61,16 +61,9 @@ namespace Mimic {
 	public:
 		EventDispatcher(Event& event) : m_Event(event) {}
 
-		/* dispatch confuses me a little because I don't
-		 * understand func's role yet. like.. how does it know
-		 * functions will meet proper arguments? or will it 
-		 * call only an overridden function?
-		 *
-		 * `const F& func` is different than in the video he
-		 * makes this file. in the vid he uses
-		 * `using EventFn = boolean function` and dispatch arguments
-		 * are handled differently, will the new implementation 
-		 * cause problems? I don't think so, but it's worth noting.
+		/* 
+		 * This implemtation of Dispatch is the new git version and
+		 * works just fine :)
 		 * 
 		 * note: F typename is decided by compiler b/c func argument
 		 */

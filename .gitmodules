@@ -1,3 +1,6 @@
 [submodule "Mimic/vendor/spdlog"]
 	path = Mimic/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Mimic/vendor/glfw"]
+	path = Mimic/vendor/glfw
+	url = https://github.com/glfw/glfw

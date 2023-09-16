@@ -12,6 +12,7 @@ file(GLOB SOURCES **.cpp)
 add_library(${PROJECT_NAME} SHARED "${SOURCES}")
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/glfw)
 
 target_precompile_headers(Mimic PRIVATE ${CMAKE_SOURCE_DIR}/Mimic/mzpch.h)
 
