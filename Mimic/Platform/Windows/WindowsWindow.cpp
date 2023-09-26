@@ -1,5 +1,7 @@
 #include "WindowsWindow.h"
 
+#include "Events/ApplicationEvent.h"
+
 namespace Mimic {
 
 	static bool s_GLFWInitialized = false;
@@ -27,7 +29,6 @@ namespace Mimic {
 		if (!s_GLFWInitialized) {
 			int success = glfwInit();
 			MZ_CORE_ASSERT(success, "Could not initlize GLFW!");
-
 			s_GLFWInitialized = true;
 		}
 
@@ -38,6 +39,23 @@ namespace Mimic {
 		// it seems to convenient
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
+
+		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			WindowResizeEvent event(width, height);
+			data.Width = width;
+			data.Height = height;
+			data.EventCallback(event);
+		});
+
+		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			WindowCloseEvent event;
+			data.EventCallback(event);
+		});
+
+		//key and mouse callbacks go here
 	}
 
 	void WindowsWindow::Shutdown() {
