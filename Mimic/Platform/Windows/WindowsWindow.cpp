@@ -21,12 +21,12 @@ namespace Mimic {
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 
-		HZ_CORE_INFO("Creating window{0} ({1}, {2})", props.Title, props.Width, props.Height);
+		MZ_CORE_INFO("Creating window{0} ({1}, {2})", props.Title, props.Width, props.Height);
 
 		// if GLFW is not initialized, initlaize it
 		if (!s_GLFWInitialized) {
 			int success = glfwInit();
-			HZ_CORE_ASSERT(success, "Could not initlize GLFW!");
+			MZ_CORE_ASSERT(success, "Could not initlize GLFW!");
 
 			s_GLFWInitialized = true;
 		}

@@ -9,8 +9,10 @@ set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
 
 add_compile_definitions(MZ_PLATFORM_WINDOWS MZ_BUILD_DLL MZ_ENABLE_ASSERTS)
 
-file(GLOB SOURCES **.cpp ${CMAKE_CURRENT_SOURCE_DIR}/Platform/Windows/WindowWindows.cpp)
-add_library(${PROJECT_NAME} SHARED "${SOURCES}")
+# TODO: Add cpp files individually, broken up into sections
+file(GLOB Root_sources *.cpp)
+file(GLOB Platform_sources "Platform/Windows/*.cpp")
+add_library(${PROJECT_NAME} SHARED ${Root_sources} ${Platform_sources})
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/glfw)
@@ -33,7 +35,6 @@ target_link_libraries(${PROJECT_NAME}
 		spdlog
 		glfw
 	PRIVATE
-		
 )
 
 target_precompile_headers(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/mzpch.h)
