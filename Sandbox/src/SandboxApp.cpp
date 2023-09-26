@@ -4,7 +4,7 @@ class Sandbox : public Mimic::Application {
 
 public:
 	Sandbox() {
-
+		std::string x = "bvlasd";
 	}
 
 	~Sandbox() {

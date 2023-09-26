@@ -18,7 +18,7 @@ namespace Mimic {
 	};
 
 	// Interface for a desktop window
-	class Window {
+	class MIMIC_API Window {
 	public:
 		// callback function for window events
 		using EventCallbackFn = std::function<void(Event&)>;
@@ -36,8 +36,10 @@ namespace Mimic {
 
 		virtual void* GetNativeWindow() const = 0;
 
-		// Scope<T> is in Base.h idk if it's going to work tbh
-		static Scope<Window> Create(const WindowProps& props = WindowProps());
+		// this line is this in git:
+		// static Scope<Window> Create(const WindowProps& props = WindowProps());
+		// for now we use the one in the video:
+		static Window* Create(const WindowProps& props = WindowProps());
 	};
 
 }
