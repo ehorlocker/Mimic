@@ -406,3 +406,5 @@ CMake/
 /out
 CMakeSettings.json
 
+#enc temp?
+enc_temp_folder/
