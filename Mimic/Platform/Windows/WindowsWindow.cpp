@@ -42,21 +42,28 @@ namespace Mimic {
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
+		// window size callback
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) {
+			// set current data to current window
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
+			// establish an event based on the callback
 			WindowResizeEvent event(width, height);
+			// use data to change the window
 			data.Width = width;
 			data.Height = height;
+			// set the event callback on the window
 			data.EventCallback(event);
 		});
 
+		// window close callback
 		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			WindowCloseEvent event;
 			data.EventCallback(event);
 		});
 
+		// key callback for press, release, and repeat
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -72,6 +79,7 @@ namespace Mimic {
 					break;
 				}
 				case GLFW_REPEAT: {
+					// repeat is set to 1 for now so when the key is repeated once, we active the event
 					KeyPressedEvent event(key, 1);
 					data.EventCallback(event);
 					break;
@@ -79,6 +87,7 @@ namespace Mimic {
 			}
 		});
 
+		// mouse button callback for press and release
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -96,6 +105,7 @@ namespace Mimic {
 			}
 		});
 
+		// mouse scroll callback
 		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xoffset, double yoffset) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -103,14 +113,13 @@ namespace Mimic {
 			data.EventCallback(event);
 		});
 
+		// cursor position callback
 		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xpos, double ypos) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
 			MouseMovedEvent event((float)xpos, (float)ypos);
 			data.EventCallback(event);
 		});
-
-		//key and mouse callbacks go here
 	}
 
 	void WindowsWindow::Shutdown() {
