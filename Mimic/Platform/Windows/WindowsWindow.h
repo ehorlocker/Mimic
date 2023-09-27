@@ -14,7 +14,6 @@ namespace Mimic {
 
 		void OnUpdate() override;
 
-		// why are these unsigned when glfw takes in normal int?????
 		unsigned int GetHeight() const override { return m_Data.Height; }
 		unsigned int GetWidth() const override { return m_Data.Width; }
 
