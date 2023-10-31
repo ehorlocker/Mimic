@@ -1,5 +1,4 @@
 # Mimic
-# maybe split into cmakes for each section?
 cmake_minimum_required(VERSION 3.25)
 project(Mimic VERSION 0.01 DESCRIPTION "Mimic Game Engine")
 
