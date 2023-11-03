@@ -6,7 +6,11 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/out/build/Sandbox)
 set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time") 
 
-add_compile_definitions(MZ_PLATFORM_WINDOWS MZ_BUILD_DLL MZ_ENABLE_ASSERTS)
+add_compile_definitions(
+	MZ_PLATFORM_WINDOWS 
+	MZ_BUILD_DLL 
+	MZ_ENABLE_ASSERTS
+)
 
 # TODO: Add cpp files individually, broken up into sections
 file(GLOB Root_sources *.cpp)
@@ -15,6 +19,7 @@ add_library(${PROJECT_NAME} SHARED ${Root_sources} ${Platform_sources})
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/glfw)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/glad)
 
 target_include_directories(${PROJECT_NAME}
 	PUBLIC
@@ -25,6 +30,7 @@ target_include_directories(${PROJECT_NAME}
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Platform/Windows>
 		spdlog
 		glfw
+		glad
 	PRIVATE
 		
 )
@@ -33,6 +39,7 @@ target_link_libraries(${PROJECT_NAME}
 	PUBLIC
 		spdlog
 		glfw
+		glad
 	PRIVATE
 )
 

@@ -4,6 +4,8 @@
 #include "Events/KeyEvent.h"
 #include "Events/MouseEvent.h"
 
+#include "glad.h"
+
 namespace Mimic {
 
 	static bool s_GLFWInitialized = false;
@@ -37,6 +39,8 @@ namespace Mimic {
 		// TODO: figure this out lmao, what are the nullptrs
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		MZ_CORE_ASSERT(status, "Failed to initialize glad...");
 		// why can we pass in m_Data, is this exact format what glfw supports?
 		// it seems to convenient
 		glfwSetWindowUserPointer(m_Window, &m_Data);

@@ -4,6 +4,7 @@
 // found in git for graphics context object later:
 //#include "Hazel/Renderer/GraphicsContext.h"
 
+#define GLFW_INCLUDE_NONE
 #include<glfw/glfw3.h>
 
 namespace Mimic {
